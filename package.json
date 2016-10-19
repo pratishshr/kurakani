@@ -5,8 +5,8 @@
   "main": "dist",
   "scripts": {
     "dev": "nodemon --exec babel-node src",
-    "prestart": "babel src -D --out-dir dist",
-    "start": "node dist"
+    "prestart": "babel src -D --out-dir build",
+    "start": "node build"
   },
   "author": "",
   "license": "ISC",

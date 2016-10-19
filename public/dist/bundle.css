@@ -128,7 +128,7 @@ body {
 }
 
 .speech .media-heading {
-    font-size: 1.2em;
+    font-size: 1em;
     color: #317787;
     display: block;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -206,5 +206,10 @@ body {
     opacity: 0;
     -webkit-transition: all .7s;
     transition: all .7s;
+}
+
+.nickname-input {
+    font-size: 1.5em;
+    text-align: center;
 }
 /*# sourceMappingURL=bundle.css.map*/

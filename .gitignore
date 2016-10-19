@@ -2,10 +2,11 @@
 node_modules
 
 # compiled ES5 code #
-dist
+build
 
 # configuration file #
 config.json
 
 # logs #
 *.log
+

@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "rimraf dist && webpack --progress --colors -d --watch",
-    "build:production": "rimraf dist && NODE_ENV=production webpack --config ./webpack.production.config.js --progress --colors -p"
+    "start": "rimraf ../public/dist && webpack --progress --colors -d --watch"
   },
   "author": "",
   "license": "ISC",
