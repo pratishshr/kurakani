@@ -2,6 +2,9 @@
 
 A simple chat-server using Express with React.
 
+You can check it out here.
+https://kura-kani.herokuapp.com/
+
 ## Setup
 ```shell
  # Rename config.json.example to config.json and add necessary configurations
