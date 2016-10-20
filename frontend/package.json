@@ -1,10 +1,10 @@
 {
-  "name": "react-starter",
+  "name": "kurakani",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "rimraf ../public/dist && webpack --progress --colors -d --watch"
+    "start": "rimraf ../src/public/dist && webpack --progress --colors -d --watch"
   },
   "author": "",
   "license": "ISC",

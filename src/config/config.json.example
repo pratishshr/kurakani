@@ -5,7 +5,7 @@
       "host": "127.0.0.1",
       "user": "db_username",
       "password": "db_password",
-      "database": "chat_server",
+      "database": "kurakani",
       "charset": "utf8"
     }
   }

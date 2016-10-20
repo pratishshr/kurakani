@@ -1,8 +1,8 @@
 {
-  "name": "node-express-starter",
+  "name": "kurakani",
   "version": "1.0.0",
   "description": "",
-  "main": "dist",
+  "main": "build",
   "scripts": {
     "dev": "nodemon --exec babel-node src",
     "prestart": "babel src -D --out-dir build",

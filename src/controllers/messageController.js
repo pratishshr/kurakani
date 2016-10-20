@@ -13,6 +13,7 @@ router.get('/', (req, res, next) => {
   messageService.fetchAll().then((response) => {
     res.json(response);
   }).catch((err) => {
+    next(err);
   });
 });
 

@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "../public/dist";
+/******/ 	__webpack_require__.p = "../src/public/dist";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -70,7 +70,7 @@
 	 * on 8/2/16.
 	 */
 	
-	__webpack_require__(/*! ../assets/css/style.css */ 332);
+	__webpack_require__(/*! ../assets/css/style.css */ 333);
 	
 	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.querySelector('#app-container'));
 	
@@ -22042,7 +22042,7 @@
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/pratishshr/development/codehome/projects/chat-server/frontend/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/pratishshr/development/codehome/projects/chat-server/frontend/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22055,6 +22055,8 @@
 	var _react2 = _interopRequireDefault(_react);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -22073,39 +22075,59 @@
 	
 	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this));
 	
+	    _this.state = {
+	      nickName: ''
+	    };
+	    _this.onChange = _this.onChange.bind(_this);
 	    _this.onSubmit = _this.onSubmit.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(Login, [{
-	    key: "onSubmit",
-	    value: function onSubmit(event) {
-	      event.preventDefault();
-	      this.props.setNickName(this.refs.nickName.value);
+	    key: 'onChange',
+	    value: function onChange(event) {
+	      var name = event.target.name;
+	      var value = event.target.value;
+	      if (value.length < 20) {
+	        this.setState(_defineProperty({}, name, value));
+	      }
 	    }
 	  }, {
-	    key: "render",
+	    key: 'onSubmit',
+	    value: function onSubmit(event) {
+	      event.preventDefault();
+	      this.props.setNickName(this.state.nickName);
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "container" },
+	        'div',
+	        { className: 'container' },
 	        _react2.default.createElement(
-	          "div",
-	          { className: "row" },
+	          'div',
+	          { className: 'row', style: { marginTop: '15%', textAlign: 'center' } },
 	          _react2.default.createElement(
-	            "div",
-	            { className: "col-md-offset-3 col-md-6" },
+	            'h1',
+	            { style: { marginBottom: '30px' } },
+	            'KuraKani'
+	          ),
+	          _react2.default.createElement(
+	            'form',
+	            { onSubmit: this.onSubmit, style: { height: '50px' } },
 	            _react2.default.createElement(
-	              "form",
-	              { onSubmit: this.onSubmit, style: { height: '50px' } },
-	              _react2.default.createElement(
-	                "div",
-	                { className: "form-group" },
-	                _react2.default.createElement("input", { className: "form-control nickname-input", type: "text", name: "nickName", ref: "nickName",
-	                  placeholder: "Enter a Nickname" })
-	              )
+	              'div',
+	              { className: 'form-group' },
+	              _react2.default.createElement('input', { className: 'form-control input', type: 'text', name: 'nickName', ref: 'nickName',
+	                placeholder: 'click here to enter a nickname...', autoComplete: 'off', value: this.state.nickName,
+	                onChange: this.onChange })
 	            )
-	          )
+	          ),
+	          this.state.nickName ? _react2.default.createElement(
+	            'strong',
+	            { style: { color: '#ffffff' } },
+	            'Press Enter'
+	          ) : null
 	        )
 	      );
 	    }
@@ -22151,6 +22173,10 @@
 	
 	var _ChatBody2 = _interopRequireDefault(_ChatBody);
 	
+	var _ChatMembers = __webpack_require__(/*! ./ChatMembers */ 332);
+	
+	var _ChatMembers2 = _interopRequireDefault(_ChatMembers);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22172,6 +22198,7 @@
 	
 	    _this.state = {
 	      userId: '',
+	      members: [],
 	      messages: []
 	    };
 	    _this.submitMesssage = _this.submitMesssage.bind(_this);
@@ -22196,6 +22223,9 @@
 	        _this2.state.messages.push(message);
 	        _this2.setState({ messages: _this2.state.messages });
 	        _this2.scrollToBottom();
+	      });
+	      socket.on('list:members', function (members) {
+	        _this2.setState({ members: members });
 	      });
 	    }
 	  }, {
@@ -22225,7 +22255,7 @@
 	        { className: 'container' },
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'col-md-offset-1 col-md-10' },
+	          { className: 'col-md-offset-1 col-md-8' },
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'panel' },
@@ -22240,6 +22270,24 @@
 	            ),
 	            _react2.default.createElement(_ChatBody2.default, { submitMessage: this.submitMesssage, messages: this.state.messages,
 	              nickName: this.props.nickName })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-md-3' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'panel' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'panel-heading' },
+	              _react2.default.createElement(
+	                'h3',
+	                { className: 'panel-title' },
+	                'Members'
+	              )
+	            ),
+	            _react2.default.createElement(_ChatMembers2.default, { members: this.state.members })
 	          )
 	        )
 	      );
@@ -24002,7 +24050,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'media-right' },
-	          _react2.default.createElement(_reactAvatar2.default, { name: this.props.message.user.nick_name, size: '50', round: true, className: 'img-circle img-sm' })
+	          _react2.default.createElement(_reactAvatar2.default, { name: this.props.message.user.nick_name, size: 50, round: true, className: 'img-circle img-sm' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -24032,7 +24080,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'media-left' },
-	          _react2.default.createElement(_reactAvatar2.default, { name: this.props.message.user.nick_name, size: '50', round: true, className: 'img-circle img-sm' })
+	          _react2.default.createElement(_reactAvatar2.default, { name: this.props.message.user.nick_name, size: 50, round: true, className: 'img-circle img-sm' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -30091,6 +30139,92 @@
 
 /***/ },
 /* 332 */
+/*!************************************************!*\
+  !*** ./src/components/chat-box/ChatMembers.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/pratishshr/development/codehome/projects/chat-server/frontend/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/pratishshr/development/codehome/projects/chat-server/frontend/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactAvatar = __webpack_require__(/*! react-avatar */ 210);
+	
+	var _reactAvatar2 = _interopRequireDefault(_reactAvatar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * Author: Pratish Shrestha <pratishshrestha@lftechnology.com>
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * on 10/19/16.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var ChatMembers = function (_Component) {
+	  _inherits(ChatMembers, _Component);
+	
+	  function ChatMembers() {
+	    _classCallCheck(this, ChatMembers);
+	
+	    return _possibleConstructorReturn(this, (ChatMembers.__proto__ || Object.getPrototypeOf(ChatMembers)).apply(this, arguments));
+	  }
+	
+	  _createClass(ChatMembers, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'panel-body', style: { height: '570px', overflow: 'scroll' } },
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'list-unstyled media-block' },
+	          this.props.members.map(function (member, index) {
+	            return _react2.default.createElement(
+	              'li',
+	              { className: 'mar-btm', key: index },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'flex' },
+	                _react2.default.createElement(_reactAvatar2.default, { name: member.nick_name, size: 50, round: true, className: 'img-circle img-sm' }),
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'pull-right member-name' },
+	                  member.nick_name
+	                )
+	              )
+	            );
+	          })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return ChatMembers;
+	}(_react.Component);
+	
+	ChatMembers.propTypes = {
+	  members: _react.PropTypes.array
+	};
+	
+	exports.default = ChatMembers;
+	
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/pratishshr/development/codehome/projects/chat-server/frontend/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ChatMembers.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 333 */
 /*!******************************!*\
   !*** ./assets/css/style.css ***!
   \******************************/

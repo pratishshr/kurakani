@@ -5,13 +5,16 @@
 
 import React, {Component, PropTypes} from 'react';
 import axios from 'axios';
+
 import ChatBody from './ChatBody';
+import ChatMembers from './ChatMembers';
 
 class ChatBox extends Component {
   constructor() {
     super();
     this.state = {
       userId: '',
+      members: [],
       messages: []
     };
     this.submitMesssage = this.submitMesssage.bind(this);
@@ -32,6 +35,9 @@ class ChatBox extends Component {
       this.setState({messages: this.state.messages});
       this.scrollToBottom();
     });
+    socket.on('list:members', (members) => {
+      this.setState({members: members});
+    })
   }
 
   scrollToBottom() {
@@ -54,13 +60,21 @@ class ChatBox extends Component {
   render() {
     return (
       <div className="container">
-        <div className="col-md-offset-1 col-md-10">
+        <div className="col-md-offset-1 col-md-8">
           <div className="panel">
             <div className="panel-heading">
               <h3 className="panel-title">Chat</h3>
             </div>
             <ChatBody submitMessage={this.submitMesssage} messages={this.state.messages}
                       nickName={this.props.nickName}/>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="panel">
+            <div className="panel-heading">
+              <h3 className="panel-title">Members</h3>
+            </div>
+            <ChatMembers members={this.state.members}/>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ app.set('view engine', 'pug');
 app.set('views', `${__dirname}/views`);
 
 app.use(bodyParser.json());
-app.use('/static', express.static('public'));
+app.use('/static', express.static('./src/public'));
 
 app.use(controllers);
 

@@ -14,7 +14,7 @@ class ChatRow extends Component {
       (this.props.nickName === this.props.message.user.nick_name) ?
         <li className="mar-btm">
           <div className="media-right">
-            <Avatar name={this.props.message.user.nick_name} size="50" round={true} className="img-circle img-sm"/>
+            <Avatar name={this.props.message.user.nick_name} size={50} round={true} className="img-circle img-sm"/>
           </div>
           <div className="media-body pad-hor speech-right">
             <div className="speech">
@@ -26,7 +26,7 @@ class ChatRow extends Component {
         :
         <li className="mar-btm">
           <div className="media-left">
-            <Avatar name={this.props.message.user.nick_name} size="50" round={true} className="img-circle img-sm"/>
+            <Avatar name={this.props.message.user.nick_name} size={50} round={true} className="img-circle img-sm"/>
           </div>
           <div className="media-body pad-hor">
             <div className="speech">
