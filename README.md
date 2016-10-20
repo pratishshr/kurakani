@@ -1,6 +1,6 @@
-# node-express-starter
+# kurakani
 
-Initial configuration for a node-express project.
+A simple chat-server using Express with React.
 
 ## Setup
 ```shell
@@ -38,7 +38,15 @@ knex migrate: rollback
 
 # Seeds
 knex seed:run
-```
+```         
 
- open http://localhost:4444 in the browser
- sample resource: http://localhost:4444/users            
+## Front End Setup
+```shell
+# navigate to frontend directory
+cd frontend
+
+# Build files
+npm start
+
+Files will be bundled to the ./src/public directory of the server application
+```
