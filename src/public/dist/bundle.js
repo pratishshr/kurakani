@@ -22269,7 +22269,7 @@
 	              )
 	            ),
 	            _react2.default.createElement(_ChatBody2.default, { submitMessage: this.submitMesssage, messages: this.state.messages,
-	              nickName: this.props.nickName })
+	              userId: this.state.userId, nickName: this.props.nickName })
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -23937,7 +23937,7 @@
 	              'ul',
 	              { className: 'list-unstyled media-block' },
 	              this.props.messages.map(function (message, index) {
-	                return _react2.default.createElement(_ChatRow2.default, { key: index, message: message, nickName: _this2.props.nickName });
+	                return _react2.default.createElement(_ChatRow2.default, { key: index, message: message, userId: _this2.props.userId, nickName: _this2.props.nickName });
 	              })
 	            )
 	          ),
@@ -23983,9 +23983,9 @@
 	}(_react.Component);
 	
 	ChatBody.propTypes = {
+	  messages: _react.PropTypes.array,
 	  nickName: _react.PropTypes.string,
-	  submitMessage: _react.PropTypes.func,
-	  messages: _react.PropTypes.array
+	  submitMessage: _react.PropTypes.func
 	};
 	
 	exports.default = ChatBody;
@@ -24044,7 +24044,7 @@
 	  _createClass(ChatRow, [{
 	    key: 'render',
 	    value: function render() {
-	      return this.props.nickName === this.props.message.user.nick_name ? _react2.default.createElement(
+	      return this.props.userId === this.props.message.user.id ? _react2.default.createElement(
 	        'li',
 	        { className: 'mar-btm' },
 	        _react2.default.createElement(

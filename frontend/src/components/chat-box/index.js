@@ -66,7 +66,7 @@ class ChatBox extends Component {
               <h3 className="panel-title">Chat</h3>
             </div>
             <ChatBody submitMessage={this.submitMesssage} messages={this.state.messages}
-                      nickName={this.props.nickName}/>
+                      userId={this.state.userId} nickName={this.props.nickName}/>
           </div>
         </div>
         <div className="col-md-3">

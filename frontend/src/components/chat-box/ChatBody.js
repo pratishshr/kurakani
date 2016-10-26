@@ -29,7 +29,7 @@ class ChatBody extends Component {
           <div id="chatArea" className="nano-content pad-all" tabIndex="0">
             <ul className="list-unstyled media-block">
               {this.props.messages.map((message, index) => {
-                return <ChatRow key={index} message={message} nickName={this.props.nickName}/>
+                return <ChatRow key={index} message={message} userId={this.props.userId} nickName={this.props.nickName}/>
               })}
             </ul>
           </div>
@@ -60,9 +60,9 @@ class ChatBody extends Component {
 }
 
 ChatBody.propTypes = {
+  messages: PropTypes.array,
   nickName: PropTypes.string,
-  submitMessage: PropTypes.func,
-  messages: PropTypes.array
+  submitMessage: PropTypes.func
 };
 
 export default ChatBody;
