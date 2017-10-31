@@ -14,5 +14,5 @@ import User from '../models/User';
  * @returns {Promise}
  */
 export function create(user) {
-  return User.forge(user).save()
+  return User.forge(user).save();
 }

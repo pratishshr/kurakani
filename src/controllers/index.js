@@ -10,7 +10,7 @@ import messageController from './messageController';
 let router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('index', {title: 'KuraKani'});
+  res.render('index', { title: 'KuraKani' });
 });
 
 router.use('/messages', messageController);

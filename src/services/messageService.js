@@ -6,7 +6,7 @@
 import * as messageDao from '../daos/messageDao';
 
 export function fetchAll() {
-  return messageDao.fetchAll().then((response) => {
+  return messageDao.fetchAll().then(response => {
     return {
       data: response.toJSON()
     };
