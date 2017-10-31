@@ -9,8 +9,8 @@ import './User';
 const Message = db.model('Message', {
   tableName: 'messages',
   hasTimestamps: true,
-  user: function () {
-    return this.belongsTo('User')
+  user: function() {
+    return this.belongsTo('User');
   }
 });
 

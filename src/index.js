@@ -37,5 +37,4 @@ let server = app.listen(app.get('port'), () => {
 
 let io = socketIO(server);
 
-io.on('connection', (socket) => socketService(socket, io));
-
+io.on('connection', socket => socketService(socket, io));

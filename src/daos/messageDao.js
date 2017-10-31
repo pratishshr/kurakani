@@ -6,7 +6,7 @@
 import Message from '../models/Message';
 
 export function fetchAll() {
-  return Message.fetchAll({withRelated: ['user']});
+  return Message.fetchAll({ withRelated: ['user'] });
 }
 
 /**
@@ -21,9 +21,9 @@ export function fetchAll() {
  * @returns {Promise}
  */
 export function create(message) {
-  return Message.forge(message).save()
+  return Message.forge(message).save();
 }
 
 export function fetchById(id) {
-  return Message.forge({id: id}).fetch({withRelated: ['user']})
+  return Message.forge({ id: id }).fetch({ withRelated: ['user'] });
 }

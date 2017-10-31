@@ -9,8 +9,8 @@ import './Message';
 const User = db.model('User', {
   tableName: 'users',
   hasTimestamps: true,
-  messages: function () {
-    return this.hasMany('Message')
+  messages: function() {
+    return this.hasMany('Message');
   }
 });
 
